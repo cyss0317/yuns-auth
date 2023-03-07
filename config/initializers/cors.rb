@@ -6,4 +6,10 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     resource '*', headers: :any, methods: %i[get post put patch delete head options], credential: true
     # credential: true makes it possible for headers to be passed
   end
+
+  allow do
+    origins 'yuns-auth.herokuapp.com'
+    resource '*', headers: :any, methods: %i[get post put patch delete head options], credential: true
+    # credential: true makes it possible for headers to be passed
+  end
 end
