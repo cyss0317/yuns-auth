@@ -2,6 +2,6 @@
 
 class StaticController < ApplicationController
   def home
-    render json: { status: "Server for Yuns-auth is currently running" }
+    render json: { status: 'Server for Yuns-auth is currently running' }
   end
 end

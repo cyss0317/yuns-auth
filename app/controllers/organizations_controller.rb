@@ -18,7 +18,6 @@ class OrganizationsController < ApplicationController
     else
       render json: { status: 500 }
     end
-
   end
 
   def update
