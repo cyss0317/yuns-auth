@@ -5,4 +5,9 @@ class User < ApplicationRecord
 
   validates_presence_of :email
   validates_uniqueness_of :email
+
+  belongs_to :organization,
+             class_name: :Organization,
+             foreign_key: :org_id,
+             optional: true
 end
