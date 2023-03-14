@@ -5,16 +5,15 @@ module Api
     include CurrentUserConcern
 
     def create
-      user = User
-             .find_by(email: params['user']['email'])
-             .try(:authenticate, params['user']['password'])
-      if user
-        session[:user_id] = user.id
-        render json: {
-          status: :created,
-          logged_in: true,
-          user:
-        }
+      @user = User
+              .find_by(email: params['user']['email'])
+              .try(:authenticate, params['user']['password'])
+      @org = Organization.find_by(name: params['user']['org_name'])
+
+      if @user&.org_id == @org.id
+        session[:user_id] = @user.id
+        @user[:logged_in] = true
+        response_to :json
       else
         render json: { status: 401, message: 'wrong' }
       end
@@ -22,10 +21,8 @@ module Api
 
     def logged_in
       if @current_user
-        render json: {
-          logged_in: true,
-          user: @current_user
-        }
+        @current_user[:logged_in] = true
+        response_to :json
       else
         render json: {
           logged_in: false

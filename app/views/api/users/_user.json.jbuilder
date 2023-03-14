@@ -13,7 +13,6 @@ json.user do
   json.id user.id
   json.orgId user.org_id
   json.phone user.phone
-
 end
 json.organization do
   json.partial! 'api/organizations/organization', organization: user.organization, usersInfo: false
