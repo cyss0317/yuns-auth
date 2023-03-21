@@ -12,8 +12,10 @@ module Api
 
       if @user&.org_id == @org.id
         session[:user_id] = @user.id
-        @user[:logged_in] = true
-        response_to :json
+        # @user[:logged_in] = true
+        # respond_to :json
+        @html_content = render_to_string partial: 'api/users/user', :locals => { :user => @user }
+        render :json => { :user => @html_content, logged_in: true}
       else
         render json: { status: 401, message: 'wrong' }
       end

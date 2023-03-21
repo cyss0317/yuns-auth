@@ -21,6 +21,7 @@ module Api
         # }
         respond_to :json
       else
+        flash[:errors] = @user.errors.full_messages
         render json: { status: 500 }
       end
     end
