@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   namespace :api, defaults: { format: :json } do
-    resources :sessions, only: %i[create ]
+    resources :sessions, only: %i[create]
     resources :users, only: %i[create update destroy]
     resources :organizations, only: %i[create update destroy]
     get :logged_in, to: 'sessions#logged_in'
